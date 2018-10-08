@@ -54,12 +54,13 @@ if [ "`md5sum -c ${BASE_DIR}mcup.md5`" ]; then
 else
 	update=y
 	echo update avaliable.
+	md5sum ${BASE_DIR}mcup.txt > ${BASE_DIR}mcup.md5
 fi
 
 
 # Function defining stage.
 
-mcrt(){
+mcrt () {
 	(
 	echo open "${IP} ${port}"
 	sleep 2
@@ -73,15 +74,15 @@ mcrt(){
 	) | telnet > /dev/null
 }
 
-nomcrt(){
+nomcrt () {
 	mcrcon -H ${mcIP} -P ${mcport} -p ${mcpasswd} "stop"
 }
 
-cmdend(){
+cmdend () {
 	mcrcon -H ${mcIP} -P ${mcport} -p ${mcpasswd} "${command}"
 }
 
-isup(){
+isup () {
 	# The following while loop is from the answer at:
 	# http://unix.stackexchange.com/q/137133/
 	# This is used so that we are sure the server has truely stopped
@@ -96,12 +97,12 @@ isup(){
 
 # Updating stage
 
-if [ update = y ]; then
-	wget `cat ${BASE_DIR}mcup.txt` -o "${BASE_DIR}server.jar"
-	if [ cmd = y]; then
+if [ "$update" == "y" ]; then
+	wget "`cat ${BASE_DIR}mcup.txt`" -o "${BASE_DIR}server.jar"
+	if [ "$cmd" == "y" ]; then
 		cmdend
 	fi
-	if [ MCRTK = y]; then
+	if [ "$MCRTK" == "y" ]; then
 		mrtkc=.hold
 		mcrt
 		isup
@@ -110,7 +111,7 @@ if [ update = y ]; then
 		mrtkc=.unhold
 		mcrt
 	else
-	nomcrt
+		nomcrt
 	fi
 fi
 exit
