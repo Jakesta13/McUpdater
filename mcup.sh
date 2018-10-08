@@ -36,16 +36,16 @@ BASE_DIR=.
 
 # Checking if md5sum file exists, if not we will create a dummy mcup.txt and ms5sum that.
 # Then the script will close, so you can create the mcup.txt file in the ftp server and the script will update the minecraft server on second launch.
-if [ ! -e ${BASE_DIR}mcup.md5 ]; then
-	touch ${BASE_DIR}mcup.txt
-	md5sum ${BASE_DIR}mcup.txt > mcup.md5
+if [ ! -e "${BASE_DIR}mcup.md5" ]; then
+	touch "${BASE_DIR}mcup.txt"
+	md5sum "${BASE_DIR}mcup.txt" > "${BASE_DIR}mcup.md5"
 	echo Finished inital start up, exiting...
 	sleep 2
 	exit
 fi
 
 # Checking if file has changed.
-ncftpget -Z -f ${ChkSrv} ${BASE_DIR}mcup.txt ${ChkSrvFILE}
+ncftpget -Z -f "${ChkSrv}" "${BASE_DIR}mcup.txt" "${ChkSrvFILE}"
 if [ "`md5sum -c ${BASE_DIR}mcup.md5`" ]; then
 	echo file not changed
 	echo Exiting...
@@ -54,7 +54,7 @@ if [ "`md5sum -c ${BASE_DIR}mcup.md5`" ]; then
 else
 	update=y
 	echo update avaliable.
-	md5sum ${BASE_DIR}mcup.txt > ${BASE_DIR}mcup.md5
+	md5sum "${BASE_DIR}mcup.txt" > "${BASE_DIR}mcup.md5"
 fi
 
 
@@ -75,11 +75,11 @@ mcrt () {
 }
 
 nomcrt () {
-	mcrcon -H ${mcIP} -P ${mcport} -p ${mcpasswd} "stop"
+	mcrcon -H "${mcIP}" -P "${mcport}" -p "${mcpasswd}" "stop"
 }
 
 cmdend () {
-	mcrcon -H ${mcIP} -P ${mcport} -p ${mcpasswd} "${command}"
+	mcrcon -H "${mcIP}" -P "${mcport}" -p "${mcpasswd}" "${command}"
 }
 
 isup () {
@@ -89,11 +89,11 @@ isup () {
 	failed=0
 	while [ $failed -ne 1 ]
 	do
-		ping -n ${mcIP} ${mcport} 2> /dev/null
+		ping -n "${mcIP}" "${mcport}" 2> /dev/null
 		failed=$?
 		sleep 2
 	done
-{
+}
 
 # Updating stage
 
@@ -106,7 +106,7 @@ if [ "$update" == "y" ]; then
 		mrtkc=.hold
 		mcrt
 		isup
-		ncftpput -f ${McServ} ${BASE_DIR}server.jar ${McServJAR_DIR}server.jar
+		ncftpput -f "${McServ}" "${BASE_DIR}server.jar" "${McServJAR_DIR}server.jar"
 		sleep 1
 		mrtkc=.unhold
 		mcrt
