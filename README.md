@@ -1,7 +1,7 @@
 # McUpdater
 
 This is to make it simpler to update your minecraft server, partially automated.
-It uses [Minecraft Tool Kit]() for properly stopping and starting the minecraft server, unless you pefer to manually start the server afterwards.
+It uses [Minecraft Tool Kit](https://bukkit.org/threads/remotetoolkit-restarts-crash-detection-auto-saves-remote-console.674/) for properly stopping and starting the minecraft server, unless you pefer to manually start the server afterwards.
 
 ## INSTALLATION
 * Drop mcup.sh into a new folder
@@ -11,9 +11,12 @@ It uses [Minecraft Tool Kit]() for properly stopping and starting the minecraft 
 
 ## DEPENDANCIES
 * NCFTP
-* [Minecraft Remote Toolkit]() -- Not required, but convinient
-* Minecraft server with an FTP server to access files. (You could also use this for the update file)
-* [MCRCON]()
+* [Minecraft Remote Toolkit](https://bukkit.org/threads/remotetoolkit-restarts-crash-detection-auto-saves-remote-console.674/) -- Not required, but convinient
+* Minecraft server with an FTP server to access files.
+* [MCRCON](https://github.com/Tiiffi/mcrcon)
+* telnet -- Only required if you wish to use Minecraft Remote Toolkit method
 
-## NOTE
-The first post of this script will most likely not work, I want to get it pushed so I don't loose the original
+## NOTES
+* The script assumes you have all of the required dependancies.
+* You can use this to download any kind of jar file, it doesn't have to be vanilla minecraft.
+* If running on something like a Raspberry Pi, you have to build mcrcon from source if you use that feature.
