@@ -110,6 +110,25 @@ if [ "${update}" == "y" ]; then
 		{ sleep 10; echo "${username}"; sleep 1; echo "${passwd}"; sleep 2; echo "${mrtkc}";} | telnet ${IP} ${port}
 	else
 		nomcrt
+                # The following while loop is from the answer at:
+                # http://unix.stackexchange.com/q/137133/
+                # This is used so that we are sure the server has truely stopped
+                # Minor edits, so we can check the port, as ping cant do that
+                # Also used https://stackoverflow.com/q/42377276
+                echo Checking ...
+                failed=0
+                while [ $failed -ne 1 ]
+                do
+                        nc -z -v ${mcIP} ${mcport} 2> /dev/null
+                        failed=$?
+                        sleep 2
+                done
+
+                echo Uploading jar ...
+                sleep 5
+                ncftpput -f ${msloginfile} ${McSrvJAR_DIR}/ ${jar}
+                sleep 1
+
 	fi
 fi
 # Before we go, lets rename server.jar so if something goes wrong we can look at the file it used.
