@@ -56,7 +56,6 @@ if md5sum -c "${BASE_DIR}mcup.md5"; then
 	echo file not changed
 	echo Exiting...
 	sleep 2
-#	exit
 else
 	update=y
 	echo update avaliable.
@@ -103,7 +102,7 @@ if [ "${update}" == "y" ]; then
 		echo Uploading jar ...
 		jar=${BASE_DIR}server.jar
 		sleep 5
-		ncftpput -f $McSrv ${McServJAR_DIR}/ ${jar}
+		ncftpput -f $McSrv ${McSrvJAR_DIR}/ ${jar}
 		sleep 1
 		mrtkc=.unhold
 		# Telnet automation command found on

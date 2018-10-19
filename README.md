@@ -20,3 +20,4 @@ It uses [Minecraft Tool Kit](https://bukkit.org/threads/remotetoolkit-restarts-c
 * The script assumes you have all of the required dependancies.
 * You can use this to download any kind of jar file, it doesn't have to be vanilla minecraft.
 * If running on something like a Raspberry Pi, you have to build mcrcon from source if you use that feature.
+* If the Telnet connection doesn't show the login screen, you may have to run '.stopwrapper' on the minecraft server console and restart the wrapper.
