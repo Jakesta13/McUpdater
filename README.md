@@ -1,31 +1,29 @@
 # McUpdater
+## Update your minecraft server (Semi-automated)
 
-This is to make it simpler to update your minecraft server, partially automated.
-It uses [Minecraft Tool Kit](https://bukkit.org/threads/remotetoolkit-restarts-crash-detection-auto-saves-remote-console.674/) for properly stopping and starting the minecraft server, unless you pefer to manually start the server afterwards.
+This script was made to make updating minecraft servers easier and a lot more efficient (in my opinion)
 
-## INSTALLATION
-* Drop mcup.sh into a new folder
-* Create two NCFTP login cfg files, one for the ftp server where the update file is, the other for server.jar to go.
-* Paste the url to an update into a file called mcup.txt on the first ftp server.
-* Schedule this script and manually change the file with an updated url whenever you wish to update your minecraft server.
+The only thing you need to do once the script is downloaded and running in a cron schedule is just update a file in the minecraft server
+and it will automatically do the rest for you.
 
-## DEPENDANCIES
+# Dependancies
+All of these are required.
 * NCFTP
-* [Minecraft Remote Toolkit](https://bukkit.org/threads/remotetoolkit-restarts-crash-detection-auto-saves-remote-console.674/) -- Not required, but convinient
-* Minecraft server with an FTP server to access files.
-* [MCRCON](https://github.com/Tiiffi/mcrcon)
-* Telnet -- Only required if you wish to use Minecraft Remote Toolkit method
+* Minecraft Remote Tool Kit
+* A Minecraft server running Multicraft panel
+* ftp access to Minecraft server
+* A Minecraft server
 
-## NOTES
-* The script assumes you have all of the required dependancies.
-* You can use this to download any kind of jar file, it doesn't have to be vanilla minecraft.
-* If running on something like a Raspberry Pi, you have to build mcrcon from source if you use that feature.
-* If the Telnet connection doesn't show the login screen, you may have to run '.stopwrapper' on the minecraft server console and restart the wrapper.
+Not required
+* mcrcon -- Highly reconmended, telneting into the Remote Tool Kit in a script is ineficient.
 
+# How does it work?
+Rebooting  works because Multicraft thinks the game has crashed when you run /stop from rcon while you have the Tool Kit wrapper
+I'm not sure why, but without that then this script does not work.
 
+What we do is upload alternating names of the server.jar, and replace that name inside of the Remote Tool Kit's config to point to that one
+then reboot the server and it will switch right over.
 
-
-
-## To-do list
-* Add pre-check rcon command to send to server (Will be user customizeable, toggleable)
-* Add pre-update rcon command to send to server (Will be user customizeable, along with a user-defined delay, toggleable)
+# To-do
+* Add pre-update RCON command, along with a kick all command (/kick @a), and with a user-defined delay before updating
+* Add feature to enable/disable HTTP Request once server is updated (Bonus of this; Can link to discorc!)
