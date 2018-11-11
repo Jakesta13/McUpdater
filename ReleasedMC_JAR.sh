@@ -36,7 +36,7 @@ wget ${M_URL} -O ${BASE_DIR}/update.html
 jarv=$(tr = '\n' < ${BASE_DIR}/update.html | grep -m 1 /server.jar)
 
 # Specific sed command came from https://serverfault.com/a/505985
-# Altered to remove everything after last dourble quotes
+# Altered to remove everything after last double quotes
 jarv2=$(echo ${jarv} | sed -e 's/\"[^\"]*$//')
 jarv3=$(echo ${jarv2} | sed 's/\"//g')
 
