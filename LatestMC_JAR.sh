@@ -30,6 +30,10 @@ fi
 if [ -e ${BASE_DIR}/latest.json ]; then
         rm ${BASE_DIR}/latest.json
 fi
+# Removing old update file, if there is one.
+if [ -e ${BASE_DIR}/${ufile} ]; then
+        rm ${BASE_DIR}/${ufile}
+fi
 
 
 # Getting link to latest json file which will then give us the
