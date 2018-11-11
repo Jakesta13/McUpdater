@@ -34,13 +34,11 @@ fi
 wget ${M_URL} -O ${BASE_DIR}/update.html
 
 jarv=$(tr = '\n' < ${BASE_DIR}/update.html | grep -m 1 /server.jar)
-echo ${jarv}
+
 # Specific sed command came from https://serverfault.com/a/505985
 # Altered to remove everything after last dourble quotes
 jarv2=$(echo ${jarv} | sed -e 's/\"[^\"]*$//')
-echo ${jarv2}
 jarv3=$(echo ${jarv2} | sed 's/\"//g')
-echo ${jarv3}
 
 if [ ${McUpdater} == y]; then
 	echo ${jarv3} > ${BASE_DIR}/${ufile}
