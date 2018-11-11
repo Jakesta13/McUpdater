@@ -39,4 +39,5 @@ you can choose to download the jar file or save the url to the txt file that McU
 # To-do
 * Add pre-update RCON command, along with a kick all command (/kick @a), and with a user-defined delay before updating
 * Add feature to enable/disable HTTP Request once server is updated (Bonus of this; Can link to discorc!)
-* Ability to grab the latest full-release of server.jar
+* ~~Ability to grab the latest full-release of server.jar~~ -- Done, see Bonus in README
+* Incorperate both update grabbing scripts into McUpdate.sh
