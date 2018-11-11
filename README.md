@@ -25,7 +25,7 @@ What we do is upload alternating names of the server.jar, and replace that name 
 then reboot the server and it will switch right over.
 
 # Bonus
-LatestMC_JAR.sh will grab the download link for the latest server.jar, you can choose to downlaod the jar file
+LatestMC_JAR.sh will grab the download link for the latest server.jar, you can choose to download the jar file
 or have it save the url to the txt file that McUpdater.sh looks for when it checks for updates.
 
 # Notes
