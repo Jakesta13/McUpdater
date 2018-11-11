@@ -24,9 +24,16 @@ I'm not sure why, but without that then this script does not work.
 What we do is upload alternating names of the server.jar, and replace that name inside of the Remote Tool Kit's config to point to that one
 then reboot the server and it will switch right over.
 
+# Bonus
+LatestMC_JAR.sh will grab the download link for the latest server.jar, you can choose to downlaod the jar file
+or have it save the url to the txt file that McUpdater.sh looks for when it checks for updates.
+
 # Notes
 * if running on a Raspberry Pi you have to [compile](https://github.com/Tiiffi/mcrcon) mcrcon!
+* LatestMC_JAR.sh will download ANY latest server.jar, INCLUDING Snapshtos and Pre-releases!
+
 
 # To-do
 * Add pre-update RCON command, along with a kick all command (/kick @a), and with a user-defined delay before updating
 * Add feature to enable/disable HTTP Request once server is updated (Bonus of this; Can link to discorc!)
+* Ability to grab the latest full-release of server.jar
