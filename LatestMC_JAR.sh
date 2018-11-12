@@ -53,7 +53,7 @@ jarv1=$(echo ${jarv} | sed 's/^.*"h/"h/')
 jarv2=$(echo ${jarv1} | sed 's/\"//g')
 jarv3=$(echo ${jarv2} | sed 's/\}//g')
 
-if [ ${McServer} == "y" ]; then
+if [ ${McUpdater} == "y" ]; then
 	echo ${jarv3} > ${BASE_DIR}/${ufile}
 	ncftpput -f ${login} / ${BASE_DIR}/${ufile}
 else
