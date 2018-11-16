@@ -50,6 +50,14 @@ pPORT=
 #Setting first state of update, don't touch this or you will super break it.
 NewUpdate=n
 uploaded=n
+
+# Setting up variables for ftp script below
+# FTP scrpt source is commented above it.
+host=$(grep host ${flogin} | sed -e 's/host //g')
+user=$(grep user ${flogin} | sed -e 's/user //g')
+pass=$(grep pass ${flogin} | sed -e 's/pass //g')
+
+
 # http://github.com/jakesta13
 ### ### ### ### ### ###
 
@@ -63,6 +71,7 @@ if [ ! -e "${BASE_DIR}/${ufile}.md5" ]; then
 fi
 
 # Checking if file has changed.
+rm "${BASE_DIR}/${ufile}"
 ncftpget -Z -f "${flogin}" "${BASE_DIR}" /"${ufile}"
 
 if md5sum -c "${BASE_DIR}/${ufile}.md5"; then
@@ -85,20 +94,33 @@ fi
 rm ${BASE_DIR}/wrapper.properties
 ncftpget -Z -f "${flogin}" "${BASE_DIR}" "${wpdir}/wrapper.properties"
 
+# If we find the alternative filename in the wrapper.properties, then we 
+# Want to upload the default filename and replace alternative filename with default filename
 if grep -q "${alternative}" "${BASE_DIR}/wrapper.properties"; then
 	# upload default file, sed replace alternate jar from properties file with default jar
 	wget `cat "${BASE_DIR}/${ufile}"` -O "${default}"
+
+	# lftp inspired from
+	# http://stackoverflow.com/q/9773454/
+	lftp -e "rm ${jardir}/${default}; bye" -u ${user},${pass} ${host}
+
 	ncftpput -f "${flogin}" "${jardir}" "${BASE_DIR}/${default}"
-	sed -i "s/${alternative}/${default}/g" "${BASE_DIR}/wrapper.properties"
+	sed -i "s=${jardir}${alternative}=${jardir}${default}=g" "${BASE_DIR}/wrapper.properties"
 	# upload modified Wrapper.properties
 	ncftpput -f "${flogin}" "${wpdir}" "${BASE_DIR}/wrapper.properties"
 	# Setting updated value so we can use workarounds as allowed.
 	uploaded=y
 else
+	# Same as above, just opposite.
 	# Upload alternate jar file, sed replace default jar from properties file with alternate jar
 	wget `cat "${BASE_DIR}/${ufile}"` -O "${alternative}"
+
+        # lftp inspired  from
+	# http://stackoverflow.com/q/9773454/
+	lftp -e "rm ${jardir}/${alternative}; bye" -u ${user},${pass} ${host}
+
         ncftpput -f "${flogin}" "${jardir}" "${BASE_DIR}/${alternative}"
-        sed -i "s/${default}/${alternative}/g" "${BASE_DIR}/wrapper.properties"
+        sed -i "s=${jardir}${default}=${jardir}${alternative}=g" "${BASE_DIR}/wrapper.properties"
 	# upload modified Wrapper.properties
         ncftpput -f "${flogin}" "${wpdir}" "${BASE_DIR}/wrapper.properties"
 	# Setting updated value so we can use workaround as allowed.
