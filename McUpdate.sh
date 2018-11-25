@@ -98,7 +98,7 @@ ncftpget -Z -f "${flogin}" "${BASE_DIR}" "${wpdir}/wrapper.properties"
 # Want to upload the default filename and replace alternative filename with default filename
 if grep -q "${alternative}" "${BASE_DIR}/wrapper.properties"; then
 	# upload default file, sed replace alternate jar from properties file with default jar
-	wget `cat "${BASE_DIR}/${ufile}"` -O "${default}"
+	wget `cat "${BASE_DIR}/${ufile}"` -O "${BASE_DIR}/${default}"
 
 	# lftp inspired from
 	# http://stackoverflow.com/q/9773454/
@@ -113,7 +113,7 @@ if grep -q "${alternative}" "${BASE_DIR}/wrapper.properties"; then
 else
 	# Same as above, just opposite.
 	# Upload alternate jar file, sed replace default jar from properties file with alternate jar
-	wget `cat "${BASE_DIR}/${ufile}"` -O "${alternative}"
+	wget `cat "${BASE_DIR}/${ufile}"` -O "${BASE_DIR}/${alternative}"
 
         # lftp inspired  from
 	# http://stackoverflow.com/q/9773454/
