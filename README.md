@@ -42,3 +42,9 @@ you can choose to download the jar file or save the url to the txt file that McU
 * ~~Ability to grab the latest full-release of server.jar~~ -- Done, see Bonus in README
 * Incorperate both update grabbing scripts into McUpdate.sh (Bonus; having the option to check for updates using a file in ftp OR from mojang's json manifest file directly)
 * eventually just use lftp for uploading/downloading
+* add a timeout for the while loop so that the server doesn't keep getting pinged.
+
+# Known problems
+* 18w48b and up -- Minecraft Remote Tool Kit doesn't really know when the server has stopped, and general weird behaviour
+	such as running .stop via RCON doesn't seem to ... stop? as pings still can reach the RCON port.
+
