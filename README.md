@@ -41,8 +41,9 @@ you can choose to download the jar file or save the url to the txt file that McU
 * Add feature to enable/disable HTTP Request once server is updated (Bonus of this; Can link to discorc!)
 * ~~Ability to grab the latest full-release of server.jar~~ -- Done, see Bonus in README
 * Incorperate both update grabbing scripts into McUpdate.sh (Bonus; having the option to check for updates using a file in ftp OR from mojang's json manifest file directly)
-* eventually just use lftp for uploading/downloading
-* add a timeout for the while loop so that the server doesn't keep getting pinged.
+* Eventually just use lftp for uploading/downloading
+* Add a timeout for the while loop so that the server doesn't keep getting pinged.
+* Hopefully add a workaround to restart the server via Telnet as a sepearate executeed script for minecraft versions 18w48a+
 
 # Known problems
 * 18w48b and up -- Minecraft Remote Tool Kit doesn't really know when the server has stopped, and general weird behaviour
