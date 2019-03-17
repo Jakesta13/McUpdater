@@ -1,7 +1,5 @@
 # McUpdater
-## Update your minecraft server (Semi-automated)
-* Once a workaround for 18w48a+ is cleaned up it will be a completely automated updater.
-	See the Known issues section below for an explanation.
+## Update your minecraft server (Automated)
 
 This script was made to make updating minecraft servers easier and a lot more efficient (in my opinion)
 
@@ -27,6 +25,11 @@ I'm not sure why, but without that then this script does not work.
 What we do is upload alternating names of the server.jar, and replace that name inside of the Remote Tool Kit's config to point to that one
 then reboot the server and it will switch right over.
 
+# How do I automate this?
+To automate updates, run the Latest or Released jar script of your choice (Read Bonus) a couple minutes before running McUpdate.sh
+For example, I have LatestMC_JAR.sh running 2 minutes before McUpdate.sh, and have McUpdate.sh run once every 10 minutes or so via crontab.
+
+
 # Bonus
 LatestMC_JAR.sh will grab the download link for the latest server.jar, you can choose to download the jar file
 or have it save the url to the txt file that McUpdate.sh looks for when it checks for updates.
@@ -46,10 +49,10 @@ you can choose to download the jar file or save the url to the txt file that McU
 * Incorperate both update grabbing scripts into McUpdate.sh (Bonus; having the option to check for updates using a file in ftp OR from mojang's json manifest file directly)
 * Eventually just use lftp for uploading/downloading
 * Add a timeout for the while loop so that the server doesn't keep getting pinged.
-* Hopefully add a workaround to restart the server via Telnet as a sepearate executeed script for minecraft versions 18w48a+
+* ~~Hopefully add a workaround to restart the server via Telnet as a sepearate executeed script for minecraft versions 18w48a+~~ -- No Longer Needed. Mojang corrected the bug.
+* Create a version of this updater for servers that do not use Minecraft Remote toolkit, as the concept should be the same only I hadn't put any thought to it.
 
 # Known problems
-* 18w48a and up -- Minecraft Remote Tool Kit doesn't really know when the server has stopped, and general weird behaviour
-	such as running .stop via RCON doesn't seem to ... stop? as pings still can reach the RCON port.
-	[See here](https://bugs.mojang.com/browse/MC-141797)
+* 18w47a until 19w04b the server will hang at saving the worlds and does not fully shutdown, this causes Remote toolkit to never know if the server really stopped or not. If you plan on using these versions with this script, it will be partially broken and will need to .forcestopwrapper
+	[See here](https://bugs.mojang.com/browse/MC-139758)
 
