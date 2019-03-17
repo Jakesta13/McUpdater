@@ -56,3 +56,7 @@ you can choose to download the jar file or save the url to the txt file that McU
 * 18w47a until 19w04b the server will hang at saving the worlds and does not fully shutdown, this causes Remote toolkit to never know if the server really stopped or not. If you plan on using these versions with this script, it will be partially broken and will need to .forcestopwrapper
 	[See here](https://bugs.mojang.com/browse/MC-139758)
 
+# Disclaimer(s)
+* For the entirety of stopwrapper.sh: I do not take ownership or claim credit to the creation of the telnet automation.
+	Usually I make it clear what portions of scripts or commands I used from other people, but in this case I begun using the script before
+	I made the habbit to note down the sources. So the source of where I got that script from is lost.
