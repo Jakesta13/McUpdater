@@ -2,7 +2,7 @@
 ### ### ### Settings ### ### ###
 # Enter base dir where files are to download to
 # If you are unsure, just enter the directory to the script
-BASE_DIR=
+BASE_DIR=/home/jake/temp/
 
 # Just in-case mojang changes their version_manifest.jar url
 VM_URL=https://launchermeta.mojang.com/mc/game/version_manifest.json
@@ -12,12 +12,15 @@ VM_URL=https://launchermeta.mojang.com/mc/game/version_manifest.json
 # Otherwise you can disable it and get this script to just download the server.jar right away.
 # https://github.com/Jakesta13/McUpdater
 
-McUpdater=n
+McUpdater=y
 ufile=mcup.txt
 
 # If McUpdater is enabled, then please enter login.cfg
 # file location for ncftp
 login=${BASE_DIR}/login.cfg
+# Enter port if ther than 21
+port=21
+
 
 # http://github.com/jakesta13
 ### ### ### ### ### ###
@@ -55,7 +58,7 @@ jarv3=$(echo ${jarv2} | sed 's/\}//g')
 
 if [ ${McUpdater} == "y" ]; then
 	echo ${jarv3} > ${BASE_DIR}/${ufile}
-	ncftpput -f ${login} / ${BASE_DIR}/${ufile}
+	ncftpput -P ${port} -f ${login} / ${BASE_DIR}/${ufile}
 else
 	wget ${jarv3} -O ${BASE_DIR}/server.jar
 fi
