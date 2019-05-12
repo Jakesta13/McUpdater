@@ -98,7 +98,7 @@ ncftpget -Z -P "${port}" -f "${flogin}" "${BASE_DIR}" /"${ufile}"
 # Check if file is empty!
 # This prevents false-positives
 empty=$(wc -c < "${BASE_DIR}/${ufile}")
-if [ "${empty}" == "0" ]; then
+if [ $empty -lt 5 ]; then
 	echo File is empty ... Abort Abort
 	exit
 fi
