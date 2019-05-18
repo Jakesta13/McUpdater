@@ -60,3 +60,7 @@ you can choose to download the jar file or save the url to the txt file that McU
 * For the entirety of stopwrapper.sh: I do not take ownership or claim credit to the creation of the telnet automation.
 	Usually I make it clear what portions of scripts or commands I used from other people, but in this case I begun using the script before
 	I made the habbit to note down the sources. So the source of where I got that script from is lost.
+
+### Reguarding alternate version
+I hope to eventually have a version that does not rely on Remote Toolkit
+You can see the project page [here](https://github.com/Jakesta13/McUpdater/projects/1)
