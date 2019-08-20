@@ -2,7 +2,7 @@
 ### ### ### Settings ### ### ###
 # Enter the BASE_DIR where the files will be downloaded to
 # If you are unsure, just put the directory of where the script is located
-BASE_DIR=/home/pi/temp/
+BASE_DIR=.
 
 # This will probably never change but just in case
 # Enter minecraft's download page url
@@ -40,7 +40,7 @@ jarv=$(tr = '\n' < ${BASE_DIR}/update.html | grep -m 1 /server.jar)
 jarv2=$(echo ${jarv} | sed -e 's/\"[^\"]*$//')
 jarv3=$(echo ${jarv2} | sed 's/\"//g')
 
-if [ ${McUpdater} == y]; then
+if [ ${McUpdater} == y ]; then
 	echo ${jarv3} > ${BASE_DIR}/${ufile}
 	ncftpput -f ${login} / ${BASE_DIR}/${ufile}
 else
